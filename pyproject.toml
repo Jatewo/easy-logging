@@ -9,6 +9,9 @@ dependencies = []
 [dependency-groups]
 dev = [
     "ruff>=0.14.4",
+	"pytest>=7.4.0",
+	"pytest-cov>=4.1.0",
+	"pytest-mock>=3.11.1",
 ]
 
 [tool.ruff]
@@ -22,4 +25,11 @@ ignore = [
 	"D213",  # multi-line-summary-second-line
 	"D301",  # Use r""" if any backslashes in a docstring
 	"S311",  # random-module
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+    "S101",    # Use of assert detected
+	"D100",    # Missing docstring in public module
+	"D104",    # Missing docstring in public package
 ]
