@@ -1,8 +1,8 @@
-# Easy Logger
+# Easy Logging
 
 **A highly customizable, zero-dependency logging formatter for Python.**
 
-`easy-logger` bridges the gap between the standard library's complexity and the ease of use of third-party tools like Loguru. It creates beautiful, colored logs for development and structured JSON logs for production, all while using the standard `logging` module you already know.
+`easy-logging` bridges the gap between the standard library's complexity and the ease of use of third-party tools like Loguru. It creates beautiful, colored logs for development and structured JSON logs for production, all while using the standard `logging` module you already know.
 
 ## Features
 
@@ -16,12 +16,12 @@
 
 ### Pip/PyPI
 ```bash
-pip install easy-logger
+pip install easy-logging-formatter
 ```
 
 ### uv
 ```bash
-uv add easy-logger
+uv add easy-logging-formatter
 ```
 
 ## Usage
