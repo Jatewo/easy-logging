@@ -181,3 +181,6 @@ The `Ansi` class has the following attributes:
 | `CYAN` | str | The cyan code for ANSI escape sequences. |
 | `WHITE` | str | The white code for ANSI escape sequences. |
 
+## License
+
+`easy-logger` is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for more information.
