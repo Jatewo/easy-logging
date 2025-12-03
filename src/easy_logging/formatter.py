@@ -22,7 +22,7 @@ class EasyFormatter(logging.Formatter):
         format: Format a log message.
 
     """
-    
+
     ICONS = {
         logging.CRITICAL: "💥",
         logging.ERROR: "❌",

@@ -3,6 +3,7 @@ import logging
 import os
 import sys
 import pytest
+from pytest_mock import MockerFixture
 from easy_logging.config import FormatterConfig
 from easy_logging.formatter import EasyFormatter
 from easy_logging.styling import Ansi
@@ -79,7 +80,9 @@ class TestEasyFormatter:
         self._test_context_injection(config, log_record_with_context)
 
     def _test_context_injection(
-        self, config: FormatterConfig, log_record: logging.LogRecord,
+        self,
+        config: FormatterConfig,
+        log_record: logging.LogRecord,
     ) -> None:
         """Verify extra fields are injected correctly."""
         formatter = EasyFormatter(config=config)
@@ -105,22 +108,24 @@ class TestEasyFormatter:
 
         assert "/users/dev/project/" not in output
         assert "main.py" in output
-        
+
     def test_path_shortening_disabled(self, log_record: logging.LogRecord) -> None:
         """Verify absolute paths are not shortened."""
         cwd = os.getcwd()
         log_record.pathname = os.path.join(cwd, "src/main.py")
-        
+
         config = FormatterConfig(shorten_paths=False)
         formatter = EasyFormatter(config=config)
-        
+
         output = formatter.format(log_record)
-        
+
         assert "src/main.py" in output
         assert cwd in output
-        
-    def test_path_shortening_failure_fallback(self, log_record, mocker):
-        """Verify fallback to full path when relpath raises ValueError (e.g. cross-drive)."""
+
+    def test_path_shortening_failure_fallback(
+        self, log_record: logging.LogRecord, mocker: MockerFixture,
+    ) -> None:
+        """Verify fallback to full path when relpath raises an Error."""
         config = FormatterConfig(shorten_paths=True)
         formatter = EasyFormatter(config=config)
 
@@ -138,15 +143,15 @@ class TestEasyFormatter:
 
         assert "ℹ️" in output
         assert "Test message" in output
-        
+
     def test_icons_unknown_level(self, log_record: logging.LogRecord) -> None:
         """Verify icons are inserted into the output."""
         config = FormatterConfig(use_icons=True, template="{level_icon} {message}")
         formatter = EasyFormatter(config=config)
-        
+
         log_record.levelno = 99
         output = formatter.format(log_record)
-        
+
         assert "•" in output
         assert "Test message" in output
 
@@ -184,8 +189,8 @@ class TestEasyFormatter:
 
         assert "FORMAT ERROR" in output
         assert "message" in output
-        
-    def test_json_exception_formatting(self, log_record):
+
+    def test_json_exception_formatting(self, log_record: logging.LogRecord) -> None:
         """Verify exceptions are included in JSON output."""
         try:
             _ = 1 / 0
@@ -194,19 +199,10 @@ class TestEasyFormatter:
 
         config = FormatterConfig(json_output=True)
         formatter = EasyFormatter(config=config)
-        
+
         output = formatter.format(log_record)
         data = json.loads(output)
 
         assert "exception" in data
         assert "ZeroDivisionError" in data["exception"]
         assert "division by zero" in data["exception"]
-        
-    def test_exc_info_handling(self, log_record: logging.LogRecord) -> None:
-        """Verify exc_info handling works as expected."""
-        log_record.exc_info = None
-        config = FormatterConfig(json_output=True)
-        formatter = EasyFormatter(config=config)
-        output = formatter.format(log_record)
-
-
