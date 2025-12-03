@@ -22,6 +22,14 @@ class EasyFormatter(logging.Formatter):
         format: Format a log message.
 
     """
+    
+    ICONS = {
+        logging.CRITICAL: "💥",
+        logging.ERROR: "❌",
+        logging.WARNING: "⚠️ ",
+        logging.INFO: "ℹ️ ",
+        logging.DEBUG: "🐛",
+    }
 
     def __init__(
         self,
@@ -239,14 +247,6 @@ class EasyFormatter(logging.Formatter):
             str: The icon for the log level.
 
         """
-        if level >= logging.CRITICAL:
-            return "💥"
-        if level >= logging.ERROR:
-            return "❌"
-        if level >= logging.WARNING:
-            return "⚠️ "
-        if level >= logging.INFO:
-            return "ℹ️ "
-        if level >= logging.DEBUG:
-            return "🐛"
+        if level in self.ICONS:
+            return self.ICONS[level]
         return "•"
