@@ -86,7 +86,7 @@ wheels = [
 ]
 
 [[package]]
-name = "easy-logger"
+name = "easy-logging-formatter"
 version = "0.1.0"
 source = { editable = "." }
 
