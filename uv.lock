@@ -86,9 +86,9 @@ wheels = [
 ]
 
 [[package]]
-name = "easy-formatter"
+name = "easy-logging"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 
 [package.dev-dependencies]
 dev = [
