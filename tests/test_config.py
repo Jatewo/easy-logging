@@ -10,7 +10,8 @@ class TestConfig:
         This test ensures that the default configuration is as expected.
         """
         config = FormatterConfig()
-        assert config.template == "[{time}] {level_icon} {level} | {message}"
+        assert config.template == ("[{time}] {level_icon} {level} |"
+                                   " {message} {context} ({filename}:{lineno})")
         assert config.date_format == "%H:%M:%S"
         assert config.use_colors is True
         assert config.json_output is False
