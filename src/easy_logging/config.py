@@ -1,7 +1,8 @@
 """Configuration class for the EasyFormatter."""
 from dataclasses import dataclass, field
 
-DEFAULT_FORMAT = "[{time}] {level_icon} {level} | {message}"
+DEFAULT_FORMAT = ("[{time}] {level_icon} {level} |"
+    " {message} {context} ({filename}:{lineno})")
 DEFAULT_DATE_FORMAT = "%H:%M:%S"
 
 
