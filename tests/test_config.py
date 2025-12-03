@@ -1,4 +1,4 @@
-from easy_logging.config import FormatterConfig
+from easy_logger.config import FormatterConfig
 
 
 class TestConfig:

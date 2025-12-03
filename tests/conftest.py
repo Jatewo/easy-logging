@@ -1,6 +1,6 @@
 import logging
 import pytest
-from easy_logging.config import FormatterConfig
+from easy_logger.config import FormatterConfig
 
 
 @pytest.fixture

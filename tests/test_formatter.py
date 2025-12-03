@@ -4,9 +4,9 @@ import os
 import sys
 import pytest
 from pytest_mock import MockerFixture
-from easy_logging.config import FormatterConfig
-from easy_logging.formatter import EasyFormatter
-from easy_logging.styling import Ansi
+from easy_logger.config import FormatterConfig
+from easy_logger.formatter import EasyFormatter
+from easy_logger.styling import Ansi
 
 
 class TestEasyFormatter:
